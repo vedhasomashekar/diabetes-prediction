@@ -158,32 +158,141 @@ elif page == "Model Performance":
 
 # ─── About Page ──────────────────────────────────────────────
 elif page == "About":
-    st.title("ℹ️ About This Project")
     st.markdown("""
-    ### Diabetes Risk Prediction Tool
-    **CS 6440 — Health Informatics Practicum | Georgia Tech**
+    <style>
+        .about-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+        }
 
-    This application uses machine learning to predict the likelihood of diabetes
-    based on diagnostic health measurements from the Pima Indians Diabetes Dataset.
+        .about-hero {
+            background: linear-gradient(135deg, #eff6ff, #f8fafc);
+            border: 1px solid #dbeafe;
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 22px;
+        }
 
-    #### Dataset
-    The Pima Indians Diabetes Dataset contains 768 patient records with 8 clinical
-    features: Pregnancies, Glucose, Blood Pressure, Skin Thickness, Insulin, BMI,
-    Diabetes Pedigree Function, and Age.
+        .about-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 8px;
+        }
 
-    #### Models
-    - **Logistic Regression** — interpretable baseline model
-    - **Random Forest Classifier** — ensemble model for improved accuracy
+        .about-subtitle {
+            font-size: 1.05rem;
+            color: #4b5563;
+            margin-bottom: 0;
+        }
 
-    #### Team
-    - Vedha Somashekar
-    - Abdullah Aljamal
-    - Venkat Retineni
-    - Anish Lukkireddy
-    - Ajay Palankar
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 10px;
+        }
 
-    #### Disclaimer
-    This tool is developed for academic purposes as part of a health informatics
-    course project. It is **not** intended for clinical diagnosis or medical
-    decision-making.
-    """)
+        .body-text {
+            color: #374151;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .chip {
+            display: inline-block;
+            background: #f3f4f6;
+            color: #111827;
+            padding: 8px 14px;
+            margin: 6px 8px 0 0;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .model-box {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 16px;
+            margin-top: 10px;
+        }
+
+        .small-note {
+            color: #6b7280;
+            font-size: 0.92rem;
+            margin-top: 8px;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="about-hero">
+        <div class="about-title">ℹ️ About This Project</div>
+        <p class="about-subtitle">
+            Diabetes risk prediction using machine learning for a health informatics course project.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="about-card">
+        <div class="section-title">🩺 Diabetes Risk Prediction Tool</div>
+        <p class="body-text"><strong>CS 6440 — Health Informatics Practicum | Georgia Tech</strong></p>
+        <p class="body-text">
+            This application uses machine learning to predict the likelihood of diabetes
+            based on diagnostic health measurements from the Pima Indians Diabetes Dataset.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="about-card">
+        <div class="section-title">📚 Dataset</div>
+        <p class="body-text">
+            The Pima Indians Diabetes Dataset contains 768 patient records with 8 clinical
+            features: Pregnancies, Glucose, Blood Pressure, Skin Thickness, Insulin, BMI,
+            Diabetes Pedigree Function, and Age.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="about-card">
+        <div class="section-title">🤖 Models</div>
+        <div class="model-box">
+            <strong>Logistic Regression</strong><br>
+            <span class="small-note">Interpretable baseline model</span>
+        </div>
+        <div class="model-box">
+            <strong>Random Forest Classifier</strong><br>
+            <span class="small-note">Ensemble model for improved accuracy</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="about-card">
+        <div class="section-title">👥 Team</div>
+        <span class="chip">Vedha Somashekar</span>
+        <span class="chip">Abdullah Aljamal</span>
+        <span class="chip">Venkat Retineni</span>
+        <span class="chip">Anish Lukkireddy</span>
+        <span class="chip">Ajay Palankar</span>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="about-card">
+        <div class="section-title">⚠️ Disclaimer</div>
+        <p class="body-text">
+            This tool is developed for academic purposes as part of a health informatics
+            course project. It is <strong>not</strong> intended for clinical diagnosis or
+            medical decision-making.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
