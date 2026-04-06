@@ -1,21 +1,8 @@
 {
-  "best_model": "Logistic Regression",
-  "logistic_regression": {
-    "accuracy": 0.7845,
-    "precision": 0.7222,
-    "recall": 0.6341,
-    "f1": 0.6753
-  },
-  "random_forest": {
-    "accuracy": 0.7672,
-    "precision": 0.675,
-    "recall": 0.6585,
-    "f1": 0.6667
-  },
-  "test_set": {
-    "accuracy": 0.7069,
-    "precision": 0.5833,
-    "recall": 0.525,
-    "f1": 0.5526
-  }
+    "test_metrics": {
+        "accuracy": 0.7758620689655172,
+        "precision": 0.6842105263157895,
+        "recall": 0.65,
+        "f1": 0.6666666666666666
+    }
 }
