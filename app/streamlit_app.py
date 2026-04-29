@@ -16,6 +16,8 @@ import joblib
 import json
 import os
 
+from risk_scoring import render_risk_result
+
 # ─── Page Config ─────────────────────────────────────────────
 st.set_page_config(
     page_title="Diabetes Risk Predictor",
@@ -117,11 +119,8 @@ if page == "Predict":
 
             # Display results
             st.markdown("### Results")
-            if prediction == 1:
-                st.error(f"⚠️ **Higher Risk of Diabetes** — Probability: {probability[1]*100:.1f}%")
-            else:
-                st.success(f"✅ **Lower Risk of Diabetes** — Probability: {probability[0]*100:.1f}%")
-
+            render_risk_result(st, probability[1])
+            
             # Confidence bar
             st.markdown("**Confidence breakdown:**")
             col_a, col_b = st.columns(2)
