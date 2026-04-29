@@ -6,6 +6,7 @@ GLUCOSE_CODES = {
     "2339-0",   
     "2345-7",   
     "41653-7",  
+}
 
 BP_PANEL_CODE = "85354-9"
 SYSTOLIC_CODE = "8480-6"
