@@ -134,6 +134,7 @@ def main():
     joblib.dump(best_model, "models/best_model.pkl")
     joblib.dump(lr_model, "models/logistic_regression.pkl")
     joblib.dump(rf_model, "models/random_forest.pkl")
+    joblib.dump(list(X_train.columns), "models/feature_cols.pkl")
 
     # Save metrics for the app to display
     results = {
@@ -149,6 +150,7 @@ def main():
     print("  models/best_model.pkl")
     print("  models/logistic_regression.pkl")
     print("  models/random_forest.pkl")
+    print("  models/feature_cols.pkl")
     print("  models/metrics.json")
 
 if __name__ == "__main__":
