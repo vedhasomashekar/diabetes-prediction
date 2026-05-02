@@ -25,6 +25,41 @@ st.set_page_config(
     layout="wide",
 )
 
+# ─── Custom CSS ──────────────────────────────────────────────
+st.markdown("""
+<style>
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #eef6ff 0%, #f8fbff 100%);
+    border-right: 1px solid #dbeafe;
+}
+
+.sidebar-subtitle {
+    color: #475569;
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+}
+
+.sidebar-footer {
+    margin-top: 35px;
+    padding: 14px;
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    color: #475569;
+    font-size: 0.9rem;
+}
+
+.section-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+}
+</style>
+""", unsafe_allow_html=True)
+
 # ─── Load Model & Scaler ────────────────────────────────────
 @st.cache_resource
 def load_model():
@@ -36,8 +71,37 @@ def load_model():
     return model, scaler, feature_cols, metrics
 
 # ─── Sidebar ────────────────────────────────────────────────
-st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Predict", "Model Performance", "About"])
+with st.sidebar:
+    st.title("🩺 Diabetes App")
+    st.markdown(
+        '<div class="sidebar-subtitle">Clinical risk prediction dashboard</div>',
+        unsafe_allow_html=True
+    )
+
+    st.markdown("---")
+
+    page = st.radio(
+        "Navigation",
+        ["Predict", "Model Performance", "About"],
+        captions=[
+            "Enter patient metrics",
+            "View model results",
+            "Project information"
+        ]
+    )
+
+    st.markdown("---")
+
+    st.markdown(
+        """
+        <div class="sidebar-footer">
+            <strong>CS 6440 Practicum</strong><br>
+            Georgia Tech<br>
+            ML + Health Informatics
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 # ─── Prediction Page ─────────────────────────────────────────
 if page == "Predict":
@@ -52,36 +116,104 @@ if page == "Predict":
         st.error(f"Model not found. Please run preprocessing and training first. Error: {e}")
         model_loaded = False
 
-    # Input form
+    st.subheader("Patient Input Form")
+
+    st.markdown('<div class="section-card">', unsafe_allow_html=True)
+    st.markdown("### 👤 Demographics & Risk Factors")
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        pregnancies = st.number_input("Pregnancies", min_value=0, max_value=20, value=1,
-                                       help="Number of times pregnant")
-        glucose = st.number_input("Glucose (mg/dL)", min_value=0, max_value=300, value=120,
-                                   help="Plasma glucose concentration (2hr oral glucose tolerance test)")
-        blood_pressure = st.number_input("Blood Pressure (mm Hg)", min_value=0, max_value=200, value=70,
-                                          help="Diastolic blood pressure")
+        pregnancies = st.number_input(
+            "Pregnancies",
+            min_value=0,
+            max_value=20,
+            value=1,
+            help="Number of times pregnant"
+        )
 
     with col2:
-        skin_thickness = st.number_input("Skin Thickness (mm)", min_value=0, max_value=100, value=20,
-                                          help="Triceps skin fold thickness")
-        insulin = st.number_input("Insulin (mu U/ml)", min_value=0, max_value=900, value=80,
-                                   help="2-Hour serum insulin")
-        bmi = st.number_input("BMI", min_value=0.0, max_value=70.0, value=25.0, step=0.1,
-                               help="Body mass index (weight in kg / height in m^2)")
+        age = st.number_input(
+            "Age",
+            min_value=1,
+            max_value=120,
+            value=30,
+            help="Age in years"
+        )
 
     with col3:
-        dpf = st.number_input("Diabetes Pedigree Function", min_value=0.0, max_value=2.5, value=0.5, step=0.01,
-                               help="Diabetes pedigree function (genetic risk score)")
-        age = st.number_input("Age", min_value=1, max_value=120, value=30,
-                               help="Age in years")
+        dpf = st.number_input(
+            "Diabetes Pedigree Function",
+            min_value=0.0,
+            max_value=2.5,
+            value=0.5,
+            step=0.01,
+            help="Diabetes pedigree function (genetic risk score)"
+        )
+
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown('<div class="section-card">', unsafe_allow_html=True)
+    st.markdown("### 🧪 Lab Values")
+    col4, col5 = st.columns(2)
+
+    with col4:
+        glucose = st.number_input(
+            "Glucose (mg/dL)",
+            min_value=0,
+            max_value=300,
+            value=120,
+            help="Plasma glucose concentration (2hr oral glucose tolerance test)"
+        )
+
+    with col5:
+        insulin = st.number_input(
+            "Insulin (mu U/ml)",
+            min_value=0,
+            max_value=900,
+            value=80,
+            help="2-Hour serum insulin"
+        )
+
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown('<div class="section-card">', unsafe_allow_html=True)
+    st.markdown("### 🫀 Vitals & Body Measurements")
+    col6, col7, col8 = st.columns(3)
+
+    with col6:
+        blood_pressure = st.number_input(
+            "Blood Pressure (mm Hg)",
+            min_value=0,
+            max_value=200,
+            value=70,
+            help="Diastolic blood pressure"
+        )
+
+    with col7:
+        skin_thickness = st.number_input(
+            "Skin Thickness (mm)",
+            min_value=0,
+            max_value=100,
+            value=20,
+            help="Triceps skin fold thickness"
+        )
+
+    with col8:
+        bmi = st.number_input(
+            "BMI",
+            min_value=0.0,
+            max_value=70.0,
+            value=25.0,
+            step=0.1,
+            help="Body mass index (weight in kg / height in m^2)"
+        )
+
+    st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown("---")
 
     if st.button("🔍 Predict Risk", type="primary", use_container_width=True):
         if model_loaded:
-            # Build input in the same order as training features
             raw_input = {
                 'Pregnancies': pregnancies,
                 'Glucose': glucose,
@@ -93,7 +225,6 @@ if page == "Predict":
                 'Age': age,
             }
 
-            # Engineer the same derived features as in preprocessing
             def bmi_category(bmi_val):
                 if bmi_val < 18.5: return 0
                 elif bmi_val < 25: return 1
@@ -109,19 +240,17 @@ if page == "Predict":
             raw_input['BP_Range'] = bp_range(blood_pressure)
             raw_input['Glucose_Insulin_Ratio'] = glucose / (insulin + 1)
 
-            # Create DataFrame with correct column order
             input_df = pd.DataFrame([raw_input])[feature_cols]
 
-            # Scale and predict
             input_scaled = scaler.transform(input_df)
             prediction = model.predict(input_scaled)[0]
             probability = model.predict_proba(input_scaled)[0]
 
-            # Display results
             st.markdown("### Results")
+
+            # Team's updated risk scoring component — keep this unchanged
             render_risk_result(st, probability[1])
-            
-            # Confidence bar
+
             st.markdown("**Confidence breakdown:**")
             col_a, col_b = st.columns(2)
             col_a.metric("Low Risk", f"{probability[0]*100:.1f}%")
@@ -245,6 +374,18 @@ elif page == "About":
         <p class="body-text">
             This application uses machine learning to predict the likelihood of diabetes
             based on diagnostic health measurements from the Pima Indians Diabetes Dataset.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="about-card">
+        <div class="section-title">🧑‍💻 UI & Clinical Output Design Contribution</div>
+        <p class="body-text">
+            The Streamlit interface was improved with a cleaner sidebar, clearer navigation,
+            and a more organized clinical input layout. Patient inputs are grouped into
+            demographics, lab values, and vitals/body measurements while keeping the backend
+            model inputs unchanged.
         </p>
     </div>
     """, unsafe_allow_html=True)
