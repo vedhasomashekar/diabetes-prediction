@@ -105,4 +105,4 @@ def render_risk_result(st, probability: float, patient_inputs: dict = None):
         recs = get_recommendations(patient_inputs)
         st.markdown("### 📋 Personalized Recommendations")
         for rec in recs:
-            st.markdown(f"- {rec}")
+            st.markdown(rec)
