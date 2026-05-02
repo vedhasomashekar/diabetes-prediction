@@ -249,8 +249,8 @@ if page == "Predict":
             st.markdown("### Results")
 
             # Team's updated risk scoring component — keep this unchanged
-            render_risk_result(st, probability[1])
-
+            render_risk_result(st, probability[1], raw_input)
+            
             st.markdown("**Confidence breakdown:**")
             col_a, col_b = st.columns(2)
             col_a.metric("Low Risk", f"{probability[0]*100:.1f}%")
