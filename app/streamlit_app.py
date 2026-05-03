@@ -362,29 +362,50 @@ elif page == "About":
     <div class="about-hero">
         <div class="about-title">ℹ️ About This Project</div>
         <p class="about-subtitle">
-            Diabetes risk prediction using machine learning for a health informatics course project.
+            A diabetes risk prediction and clinical decision support tool built for a health informatics course project.
         </p>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
     <div class="about-card">
-        <div class="section-title">🩺 Diabetes Risk Prediction Tool</div>
+        <div class="section-title">🩺 Project Overview</div>
         <p class="body-text"><strong>CS 6440 — Health Informatics Practicum | Georgia Tech</strong></p>
         <p class="body-text">
-            This application uses machine learning to predict the likelihood of diabetes
-            based on diagnostic health measurements from the Pima Indians Diabetes Dataset.
+            This application predicts the likelihood of diabetes using machine learning and supports
+            clinical-style decision-making by generating risk levels and personalized recommendations.
+        </p>
+        <p class="body-text">
+            The system has evolved from a simple dataset-based model into a more realistic health
+            informatics solution that integrates structured clinical data workflows.
         </p>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
     <div class="about-card">
-        <div class="section-title">📚 Dataset</div>
+        <div class="section-title">📡 FHIR-Based Data Integration</div>
         <p class="body-text">
-            The Pima Indians Diabetes Dataset contains 768 patient records with 8 clinical
-            features: Pregnancies, Glucose, Blood Pressure, Skin Thickness, Insulin, BMI,
-            Diabetes Pedigree Function, and Age.
+            The application is designed to work with FHIR (Fast Healthcare Interoperability Resources)
+            standards to simulate real-world healthcare data integration.
+        </p>
+        <p class="body-text">
+            Data pipeline:
+            <br><strong>FHIR Server → Patient & Observations → Feature Mapping → Model Input → Risk Prediction → UI Output</strong>
+        </p>
+        <p class="body-text">
+            Synthetic patient data is generated using tools like Synthea to simulate realistic clinical scenarios.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="about-card">
+        <div class="section-title">📚 Data & Features</div>
+        <p class="body-text">
+            The system originally used the Pima Indians Diabetes Dataset (768 records, 8 features),
+            and now aligns these features with clinical observations such as glucose levels,
+            blood pressure, BMI, and demographic data extracted from FHIR resources.
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -405,13 +426,27 @@ elif page == "About":
 
     st.markdown("""
     <div class="about-card">
-        <div class="section-title">👥 Team</div>
-        <span class="chip">Vedha Somashekar</span>
-        <span class="chip">Abdullah Aljamal</span>
-        <span class="chip">Venkat Retineni</span>
-        <span class="chip">Anish Lukkireddy</span>
-        <span class="chip">Ajay Palankar</span>
+        <div class="section-title">📊 Clinical Output</div>
+        <p class="body-text">
+            The system provides:
+        </p>
+        <ul class="body-text">
+            <li>Risk stratification (Low / Medium / High)</li>
+            <li>Clear interpretation of prediction results</li>
+            <li>Personalized patient recommendations based on clinical inputs</li>
+        </ul>
     </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+   <div class="about-card">
+    <div class="section-title">👥 Team</div>
+    <span class="chip">Vedha Somashekar</span>
+    <span class="chip">Abdullah Aljamal</span>
+    <span class="chip">Venkat Retineni</span>
+    <span class="chip">Anish Lukkireddy</span>
+    <span class="chip">Ajay Palankar</span>
+</div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
